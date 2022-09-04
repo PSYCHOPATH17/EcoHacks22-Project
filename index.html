@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>EcoHacks</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Favicons -->
+		<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+        <!--Something-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.2/css/all.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.botstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!--CSS-->
+        <style>
+            *{box-sizing:border-box;scroll-behavior: smooth;}
+            html,body{margin:0;padding:0;}
+            /* Sliding */
+            .issue{display:flex;height:80vh;width:80vw;margin-left:auto;margin-right:auto;border:1vw solid darkgreen;border-radius: 1vw;}
+            .section{flex:1;display:flex;justify-content:center;height:100%;overflow:hidden;position:relative;transition:flex 1s ease}
+            .section .content{z-index:2}
+            .section:hover{flex:2}
+            .secton:hover .overlay{background-color:red;}
+            #problem{background-image:url("data:image/jpeg;base64,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");background-repeat:no-repeat;background-size:cover;}
+            #solution{background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBIgi05nU5GdcDZGLFy3nUyYany7SbzDHzeg&usqp=CAU");background-repeat:no-repeat;background-size:cover;background-position:center;}
+
+            /* Timeline */
+            .timeline:before {
+                content: '';
+                position:absolute;
+                height:100%;
+                left:50%;
+                width:2px;
+                top:-20px;
+                background:rgb(56, 29, 29);
+                z-index:1;
+                }
+                .timeline{
+                position:relative;
+                margin: 50px auto;
+                width:1000px;
+                padding:50px 0;
+                }
+
+
+                .timeline ul{
+                margin:0;
+                padding:0 ;
+                }
+
+                .timeline ul li{
+                list-style:none;
+                box-sizing:border-box; 
+                line-height:normal;
+                position:relative;
+                width:50%;
+                padding: 40px 70px;
+                }
+
+                .timeline ul li .right_content h2{
+                color:rgba(59,112,239,1);
+                padding:0px 2px 18px 0px;
+                }
+                .timeline ul li:nth-child(odd){
+                float:left;
+                text-align:right;
+                clear:both;
+                }
+
+                .timeline ul li:nth-child(even){
+                float:right;
+                text-align:left;
+                clear:both;
+                }
+
+                .left_content{
+                padding-bottom:10px;
+                padding-right:5vw;
+                }
+
+                .timeline ul li:nth-child(odd):before{
+                content: '';
+                position:absolute;
+                width:10px;
+                height:10px;
+                background:rgba(59,112,239,1);
+                border-radius:50%;
+                box-shadow: 0 0 0 3px rgba(58,112,239,0.2);
+                right:5px;
+                top:24px;
+                z-index:1;
+                }
+
+                .timeline ul li:nth-child(even):before{
+                content: '';
+                position:absolute;
+                width:10px;
+                height:10px;
+                background:rgba(59,112,239,1);
+                border-radius:50%;
+                box-shadow: 0 0 0 3px rgba(58,112,239,0.2);
+                left:-6px;
+                top:24px;
+                }
+
+                .timeline ul li:nth-child(odd) .left_content{
+                position:absolute;
+                top:12px;
+                right:-165px;
+                margin:0;
+                padding:8px 16px;
+
+                color:black;
+                box-shadow:0 0 0 3px rgba(59,112,239,0.3);
+                border-radius:18px;
+                
+                }
+
+                .timeline ul li:nth-child(even) .left_content{
+                position:absolute;
+                top:12px;
+                left:-165px;
+                margin:0;
+                padding:8 px 16px;
+                
+                color:black;
+                box-shadow:0 0 0 3px rgba(59,112,239,0.3);
+                border-radius:18px;
+                
+                }
+
+
+                @media (max-width: 1000px){
+                
+                .timeline{
+                    width:100%;
+                }
+                }
+
+                @media (max-width: 767px){
+                .timeline{
+                    width:100%;
+                }
+                .timeline:before{
+                    left:20px;
+                }
+                .timeline ul li:nth-child(odd),
+                .timeline ul li:nth-child(even){
+                    width:100%;
+                    text-align:left;
+                padding-left:50px; 
+                }
+                
+                .timeline ul li:nth-child(odd):before
+                    {
+                    top:-18px;
+                    left:16px;
+                
+                }
+                .timeline ul li:nth-child(even):before
+                { 
+                    top:-18px;
+                    left:16px;
+                }
+                
+                    .timeline ul li:nth-child(odd) .left_content,
+                .timeline ul li:nth-child(even) .left_content
+                {
+                    top:-30px;
+                    left:50px;
+                    right:inherit;
+                }
+
+                
+            }
+
+            /* Small devices (landscape phones, 576px and up)
+            @media (min-width: 576px) { }
+
+            Medium devices (tablets, 768px and up)
+            @media (min-width: 768px) { }
+
+            Large devices (desktops, 992px and up)
+            @media (min-width: 992px) {  }
+
+            Extra large devices (large desktops, 1200px and up)
+            @media (min-width: 1200px) {} */
+
+            .ficons a{
+    color:black;
+    margin-left:1.7vw;
+}
+#insta{font-size:1.953125vw;}
+#insta:hover{
+    color:mediumorchid;
+    text-shadow: .9px .9px black;
+}
+#fb{font-size:1.953125vw;}
+#fb:hover{
+    color:darkblue;
+    text-shadow: .9px .9px black;
+}
+#twitter{font-size:1.953125vw;padding: left -4vw;}
+#twitter:hover{
+    color:rgb(27, 229, 209);
+    text-shadow: .9px .9px black;
+}
+#yt{font-size:1.953125vw;}
+#yt:hover{
+    color:red;
+    text-shadow: .9px .9px black;
+}
+#pin{font-size:1.953125vw;}
+#pin:hover{
+    color:darkred;
+    text-shadow: .9px .9px black;
+}
+#snap{font-size:1.953125vw;}
+#snap:hover{
+    color:gold;
+    text-shadow: .9px .9px black;
+}
+
+
+            ::-webkit-scrollbar {
+    width: 0.703125vw;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px black; 
+    border-radius: 0.78125vw;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: turquoise; 
+    border-radius: 0.78125vw;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 109, 252); 
+  }
+        </style>
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-expand-lg sticky-top" style="background:rgb(141, 223, 20);">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#home" style="color: rgb(0, 157, 255);">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#mission" style="color: rgb(0, 157, 255);">Our Mission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#issueproblem" style="color: rgb(0, 157, 255);">The Issue</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#line" style="color: rgb(0, 157, 255);">Action Plan</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#contact" style="color: rgb(0, 157, 255);">Contact Us</a>
+                    </li>
+                    </ul>
+                    <button type="button" class="btn " style="font-size: 17px;padding:1vh 1vw;margin-right:2vw;background:rgb(141, 223, 20);border:.1vw solid rgb(0, 157, 255);color:rgb(0, 157, 255)" data-toggle="modal" data-target="#map">Contribute</button>
+                    <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:rgb(0, 157, 255);border: 1px solid rgb(0,157,255);">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="home" class="card" style="background-image:url('/Assets/bknd.jpg');background-size:cover;background-repeat:no-repeat;height:100vh;">
+            <div class="card-title">
+                <img src="/Assets/clean1.png" alt="" style="position:absolute;z-index:1;width:3vw;height:auto;margin-top:58vh;margin-left:18vw;"/>
+                <img src="/Assets/clean2.png" alt="" style="position:absolute;z-index:2;width:12vw;height:auto;margin-top:74vh;margin-left:16vw;"/>
+                <img src="/Assets/clean3.png" alt="" style="position:absolute;z-index:3;width:7vw;height:auto;margin-top:60vh;margin-left:61.5vw;"/>
+                <img src="/Assets/clean4.png" alt="" style="position:absolute;z-index:4;width:3.5vw;height:auto;margin-top:59vh;margin-left:32vw;"/>
+                <img src="/Assets/clean5.png" alt="" style="position:absolute;z-index:4;width:3vw;height:auto;margin-top:59vh;margin-left:53.2vw;"/>
+                <img src="/Assets/clean6.png" alt="" style="position:absolute;z-index:5;width:9vw;height:auto;margin-top:62vh;margin-left:41vw;"/>
+                <img src="/Assets/clean7.png" alt="" style="position:absolute;z-index:5;width:4vw;height:auto;margin-top:60vh;margin-left:8vw;"/>
+                <img id="logo" src="/Assets/Logo.png" alt="" style="z-index:-1;width:13vw;display:block;margin:auto;margin-top:20vh;">
+                <h1 id="logo-text" style="text-align:center;color:whitesmoke;text-shadow: 1.5px 1px 0 black;">#Project<span>GlobalSave</span></h1>
+                <button type="button" id="logo-button"class="btn" style="font-size: 17px;padding:1vh 1vw;background:rgb(0, 157, 255);box-shadow: 5px 7px 10px 0 rgb(141, 223, 20);color:whitesmoke;display:block;margin-left:auto;margin-right:auto;" data-toggle="modal" data-target="#map">Join Us!</button>
+            </div>
+        </div>
+        <div class="mission" id="mission"style="background-image:url('/Assets/underground1.jpg');background-repeat:no-repeat;background-size:cover;height:100vh;">
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/>  
+          <h1 style="text-align:center;color:rgb(141, 223, 20);">We save the Earth.</h1>
+            <br/>
+            <h1 style="text-align:center;color:rgb(141, 223, 20);">It is pretty simple.</h1>
+        </div>
+        <div class="problemo" id="issueproblem"style="background-image:url('/Assets/underground2.jpg');height:110vh;">
+            <br/><br/><br/><br/>
+            <div class="issue">
+                <div id="problem"class="section" style="color:red;">
+                    <h1 style="margin-top:3vh;position:absolute;background:black;">The Problem</h1>
+                    <br/><br/>
+                    <div style="margin-top:20vh;margin-left:1vw;margin-right:1vw;">
+                        <h7 style="background:black;text-align:justify;">Environmental pollution is one of the leading causes of detriment to this world. Types of pollution present in the modern-day environment are air pollution, ocean pollution, and land pollution. Each of these types of pollutant types cause their own dents in nature. An article conspired by www.mass.gov states, "...Pollution can damage crops and trees in a variety of ways. Ground-level ozone can lead to reductions in agricultural crop and commercial forest yields, reduced growth and survivability of tree seedlings, and increased plant susceptibility to disease, pests and other environmental stresses (such as harsh weather)."</h7>
+                    </div>
+                </div>
+                <div id="solution"class="section" style="color:rgb(141, 223, 20);">
+                    <h1 style="margin-top:3vh;position:absolute;background:whitesmoke;">The Solution</h1>
+                    <div style="margin-top:20vh;margin-left:1vw;margin-right:1vw;">
+                        <h7 style="background:whitesmoke;text-align:justify;">We plan to diminish the derogatory effects of pollution with our action plan. This consists of little effects that are planned to be inaugurated into the world, from recycling, to promoting the occupancy of EVehicles and more.</h7>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </div>
+        </div>
+        <div class="tline" id="line"style="background:linear-gradient(to top right,rgb(141,223,20),rgb(0,157,225),rgb(141,223,20));margin-top:-8.2vh;">
+        <div class="timeline">
+            <ul>
+              <li>
+                <div class="right_content">
+                  <h2>EVehicle Education</h2>
+                  <p>Run campaigns and spread news to educate civilians on the benefits of EVehicles.
+                  </p>
+                </div>
+                <div class="left_content">
+                  <img src="/Assets/electric.png" alt="" style="width:12vw;height:auto;"/>
+                </div>
+              </li>
+              <li>
+                <div class="right_content">
+                  <h2>Pick Up</h2>
+                  <p>Form groups with volunteers to travel to civilized areas and pick up trash.
+                  </p>
+                </div>
+                <div class="left_content">
+                  <img src="/Assets/trash.png" style="width:12vw;height:auto;"/>
+                </div>
+              </li>
+              <li>
+                <div class="right_content">
+                  <h2>Recycle</h2>
+                  <p>Reduce the amount of plastic in the oceans by simply recycling instead of dumping everything in the trash.
+                  </p>
+                </div>
+                <div class="left_content">
+                  <img src="/Assets/recycle.png" style="width:12vw;height:auto;"/>                </div>
+              </li>
+              <li>
+                <div class="right_content">
+                  <h2>Plant Trees</h2>
+                  <p>Associate with organizations and volunteers to plant trees. #TeamTrees
+                  </p>
+                </div>
+                <div class="left_content">
+                  <img src="/Assets/trees.png" style="width:12vw;height:auto;"/>
+                </div>
+              </li>
+              <li>
+                <div class="right_content">
+                  <h2>Bicycles</h2>
+                  <p>Encourage people to travel by bicycles. Inaugurate this by using bicycles yourself.
+                  </p>
+                </div>
+                <div class="left_content">
+                  <img src="/Assets/bicycles.png" style="width:12vw;height:auto;"/>
+                </div>
+              </li>
+              <div style="clear:both;"></div>
+            </ul>
+          </div>
+          </div>
+          <footer id="contact"style="background:linear-gradient(to right, darkslategray,gray);height:25vh;margin-top:-8.2vh;">
+          <br/><br/>
+            <div class="ficons" style="margin-left:37vw;">
+              <a class="icon" href="#"><i class="bi bi-instagram" id="insta"></i></a>
+          <a class="icon" href="#"><i class="bi bi-facebook" id="fb"></i></a>
+          <a class="icon" href="#"><i class="bi bi-twitter" id="twitter"></i></a>
+          <a class="icon" href="#"><i class="bi bi-youtube" id="yt"></i></a>
+          <a class="icon" href="#"><i class="bi bi-pinterest" id="pin"></i></a>
+          <a class="icon" href="#"><i class="bi bi-snapchat" id="snap"></i></a>
+          </div>
+          </footer>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+        <script>
+            gsap.from('#logo', {delay: 1, duration: 1.7,opacity:0,y:-50, ease:'Power1.easeinOut'});
+            gsap.from('#logo-text', {delay: 2.9, duration: 1.3,opacity:0,y:-50, ease:'Power1.easeinOut'});
+            gsap.from('#logo-button', {delay: 3.8, duration: .9,opacity:0,y:-50, ease:'Power1.easeinOut'});
+        </script>
+    </body>
+</html>
